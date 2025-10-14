@@ -5,12 +5,35 @@ namespace FanControl.Frmwrk
 {
     internal static class FrmwrkCLIWrapper
     {
+        public static string frmwrk_tools_executable = "Plugins\\framework_tool.exe";
+
+        public static Dictionary<string, object> ThermalData = new(StringComparer.OrdinalIgnoreCase);
+        public static List<int> FanSpeeds = new();
+
         internal static void Initialize()
         {
-            // Any initialization code if needed
+            Update();
         }
-        
-        public static string frmwrk_tools_executable = "Plugins\\framework_tool.exe";
+
+        internal static void Update()
+        {
+            ThermalData.Clear();
+            FanSpeeds.Clear();
+
+            TemperatureParser.ParseToDictionary(FrmwrkToolsCall($"--thermal"), ThermalData);
+
+            foreach (var entry in ThermalData
+                .Where(kv => kv.Key.StartsWith("Fan Speed", StringComparison.OrdinalIgnoreCase))
+                .Select(kv => kv.Value?.ToString())
+                .Where(s => s != null)
+                .ToList())
+            {
+                if (entry != null && int.TryParse(entry.Trim(), out int speed))
+                {
+                    FanSpeeds.Add(speed);
+                }
+            }
+        }
 
         private static string FrmwrkToolsCall(string arguments)
         {
@@ -38,42 +61,19 @@ namespace FanControl.Frmwrk
             return output;
         }
 
-        internal static Dictionary<string, object> GetThermal()
-        {
-            string output = FrmwrkToolsCall($"--thermal");
-            return TemperatureParser.ParseToDictionary(output);
-        }
-
-        internal static List<int> GetFanSpeeds()
-        {
-            var speeds = new List<int>();
-            foreach (var entry in GetThermal()
-                .Where(kv => kv.Key.StartsWith("Fan Speed", StringComparison.OrdinalIgnoreCase))
-                .Select(kv => kv.Value?.ToString())
-                .Where(s => s != null)
-                .ToList())
-            {
-                if (entry != null && int.TryParse(entry.Trim(), out int speed))
-                {
-                    speeds.Add(speed);
-                }
-            }
-            return speeds;
-        }
-
         internal static int GetAPUFanSpeed()
         {
-            return GetFanSpeeds()[1]; // The second fan speed is always the APU fan
+            return FanSpeeds[1]; // The second fan speed is always the APU fan
         }
 
         internal static int GetSys1FanSpeed()
         {
-            return GetFanSpeeds()[0]; // The first fan speed is always the System1 fan
+            return FanSpeeds[0]; // The first fan speed is always the System1 fan
         }
 
         internal static int GetSys2FanSpeed()
         {
-            return GetFanSpeeds()[2]; // The third fan speed is always the System2 fan
+            return FanSpeeds[2]; // The third fan speed is always the System2 fan
         }
 
         internal static void SetFanDuty(int fan, int duty)

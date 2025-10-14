@@ -9,10 +9,8 @@ public static class TemperatureParser
 {
     // Parses the input text into a dictionary where each key maps to either a single string
     // value or a List<string> when the key appears multiple times.
-    public static Dictionary<string, object> ParseToDictionary(string input)
+    public static Dictionary<string, object> ParseToDictionary(string input, Dictionary<string, object> dict)
     {
-        var dict = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
-
         if (string.IsNullOrWhiteSpace(input))
             return dict;
 
@@ -63,15 +61,15 @@ public static class TemperatureParser
     }
 
     // Serializes the parsed dictionary to a pretty-printed JSON string.
-    public static string ParseToJson(string input)
+    public static string ParseToJson(string input, Dictionary<string, object> dict)
     {
-        var dict = ParseToDictionary(input);
+        var json = ParseToDictionary(input, dict);
 
         var options = new JsonSerializerOptions
         {
             WriteIndented = true
         };
 
-        return JsonSerializer.Serialize(dict, options);
+        return JsonSerializer.Serialize(json, options);
     }
 }

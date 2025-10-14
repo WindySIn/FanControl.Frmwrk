@@ -38,6 +38,8 @@ namespace FanControl.Frmwrk
 
         public void Update()
         {
+            FrmwrkCLIWrapper.Update();
+            
             device.APUFanSpeedSensor.Update();
             device.Sys1FanSpeedSensor.Update();
             device.Sys2FanSpeedSensor.Update();

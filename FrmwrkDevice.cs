@@ -8,6 +8,8 @@ namespace FanControl.Frmwrk
         {
             Logger = logger;
 
+            FrmwrkCLIWrapper.Initialize();
+
             APUFanSpeedSensor = new APUFanSpeed();
             APUFanDutyControl = new APUFanDuty();
             Sys1FanSpeedSensor = new Sys1FanSpeed();
@@ -59,12 +61,9 @@ namespace FanControl.Frmwrk
 
             public void Reset()
             {
-                var _sys1FanSpeed = FrmwrkCLIWrapper.GetFanSpeeds()[0];
-                var _sys2FanSpeed = FrmwrkCLIWrapper.GetFanSpeeds()[2];
-
                 FrmwrkCLIWrapper.ResetFanControl(); // Currently, this resets all fans to auto control, so we need to re-apply the other fan speeds.
-                FrmwrkCLIWrapper.SetSys1FanRPM(_sys1FanSpeed);
-                FrmwrkCLIWrapper.SetSys2FanRPM(_sys2FanSpeed);
+                FrmwrkCLIWrapper.SetSys1FanRPM(FrmwrkCLIWrapper.GetSys1FanSpeed());
+                FrmwrkCLIWrapper.SetSys2FanRPM(FrmwrkCLIWrapper.GetSys2FanSpeed());
             }
 
             public void Update()
@@ -117,12 +116,9 @@ namespace FanControl.Frmwrk
 
             public void Reset()
             {
-                var _apuFanSpeed = FrmwrkCLIWrapper.GetFanSpeeds()[1];
-                var _sys2FanSpeed = FrmwrkCLIWrapper.GetFanSpeeds()[2];
-
                 FrmwrkCLIWrapper.ResetFanControl(); // Currently, this resets all fans to auto control, so we need to re-apply the other fan speeds.
-                FrmwrkCLIWrapper.SetAPUFanRPM(_apuFanSpeed);
-                FrmwrkCLIWrapper.SetSys2FanRPM(_sys2FanSpeed);
+                FrmwrkCLIWrapper.SetAPUFanRPM(FrmwrkCLIWrapper.GetAPUFanSpeed());
+                FrmwrkCLIWrapper.SetSys2FanRPM(FrmwrkCLIWrapper.GetSys2FanSpeed());
             }
 
             public void Update()
@@ -175,12 +171,9 @@ namespace FanControl.Frmwrk
 
             public void Reset()
             {
-                var _apuFanSpeed = FrmwrkCLIWrapper.GetFanSpeeds()[1];
-                var _sys1FanSpeed = FrmwrkCLIWrapper.GetFanSpeeds()[0];
-
                 FrmwrkCLIWrapper.ResetFanControl(); // Currently, this resets all fans to auto control, so we need to re-apply the other fan speeds.
-                FrmwrkCLIWrapper.SetAPUFanRPM(_apuFanSpeed);
-                FrmwrkCLIWrapper.SetSys1FanRPM(_sys1FanSpeed);
+                FrmwrkCLIWrapper.SetAPUFanRPM(FrmwrkCLIWrapper.GetAPUFanSpeed());
+                FrmwrkCLIWrapper.SetSys1FanRPM(FrmwrkCLIWrapper.GetSys1FanSpeed());
             }
 
             public void Update()
