@@ -30,7 +30,7 @@ namespace FanControl.Frmwrk
             {
                 _name = "APU Fan Speed";
                 _value = FrmwrkCLIWrapper.GetAPUFanSpeed();
-                _id = "APU Fan Speed";
+                _id = "frmwrk/speed/apu";
             }
 
             public void Update()
@@ -51,7 +51,7 @@ namespace FanControl.Frmwrk
             {
                 _name = "APU Fan Duty";
                 _value = FrmwrkCLIWrapper.GetAPUFanSpeed();
-                _id = "APU Fan Duty";
+                _id = "frmwrk/duty/apu";
             }
 
             public void Set(float val)
@@ -85,7 +85,7 @@ namespace FanControl.Frmwrk
             {
                 _name = "Sys1 Fan Speed";
                 _value = FrmwrkCLIWrapper.GetSys1FanSpeed();
-                _id = "Sys1 Fan Speed";
+                _id = "frmwrk/speed/sys1";
             }
 
             public void Update()
@@ -106,7 +106,7 @@ namespace FanControl.Frmwrk
             {
                 _name = "Sys1 Fan Duty";
                 _value = FrmwrkCLIWrapper.GetSys1FanSpeed();
-                _id = "Sys1 Fan Duty";
+                _id = "frmwrk/duty/sys1";
             }
 
             public void Set(float val)
@@ -140,7 +140,7 @@ namespace FanControl.Frmwrk
             {
                 _name = "Sys2 Fan Speed";
                 _value = FrmwrkCLIWrapper.GetSys2FanSpeed();
-                _id = "Sys2 Fan Speed";
+                _id = "frmwrk/speed/sys2";
             }
 
             public void Update()
@@ -161,7 +161,7 @@ namespace FanControl.Frmwrk
             {
                 _name = "Sys2 Fan Duty";
                 _value = FrmwrkCLIWrapper.GetSys2FanSpeed();
-                _id = "Sys2 Fan Duty";
+                _id = "frmwrk/duty/sys2";
             }
 
             public void Set(float val)
