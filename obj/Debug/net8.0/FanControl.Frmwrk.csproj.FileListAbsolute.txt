@@ -1,0 +1,14 @@
+D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\FanControl.Frmwrk.csproj.AssemblyReference.cache
+D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\FanControl.Frmwrk.GeneratedMSBuildEditorConfig.editorconfig
+D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\FanControl.Frmwrk.AssemblyInfoInputs.cache
+D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\FanControl.Frmwrk.AssemblyInfo.cs
+D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\FanControl.Frmwrk.csproj.CoreCompileInputs.cache
+D:\Processing\Projects\FanControl.Frmwrk\bin\Debug\net8.0\FanControl.Frmwrk.deps.json
+D:\Processing\Projects\FanControl.Frmwrk\bin\Debug\net8.0\FanControl.Frmwrk.dll
+D:\Processing\Projects\FanControl.Frmwrk\bin\Debug\net8.0\FanControl.Frmwrk.pdb
+D:\Processing\Projects\FanControl.Frmwrk\bin\Debug\net8.0\FanControl.Plugins.dll
+D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\FanContr.C26E4300.Up2Date
+D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\FanControl.Frmwrk.dll
+D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\refint\FanControl.Frmwrk.dll
+D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\FanControl.Frmwrk.pdb
+D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\ref\FanControl.Frmwrk.dll

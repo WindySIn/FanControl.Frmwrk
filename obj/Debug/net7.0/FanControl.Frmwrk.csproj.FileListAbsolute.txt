@@ -1,0 +1,4 @@
+d:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net7.0\FanControl.Frmwrk.GeneratedMSBuildEditorConfig.editorconfig
+d:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net7.0\FanControl.Frmwrk.AssemblyInfoInputs.cache
+d:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net7.0\FanControl.Frmwrk.AssemblyInfo.cs
+d:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net7.0\FanControl.Frmwrk.csproj.CoreCompileInputs.cache
