@@ -65,11 +65,20 @@ namespace FanControl.Frmwrk
                 _value = val;
             }
 
+            public void Reset(bool ResetAllFansToAuto)
+            {
+                FrmwrkCLIWrapper.ResetFanControl(); // Currently, this resets all fans to auto control, so we need to re-apply the other fan speeds if only one fan is being reset.
+                if (!ResetAllFansToAuto)
+                {
+                    FrmwrkCLIWrapper.SetSys1FanRPM(FrmwrkCLIWrapper.GetSys1FanSpeed());
+                    FrmwrkCLIWrapper.SetSys2FanRPM(FrmwrkCLIWrapper.GetSys2FanSpeed());
+                }
+                _value = null;
+            }
+
             public void Reset()
             {
-                FrmwrkCLIWrapper.ResetFanControl(); // Currently, this resets all fans to auto control, so we need to re-apply the other fan speeds.
-                FrmwrkCLIWrapper.SetSys1FanRPM(FrmwrkCLIWrapper.GetSys1FanSpeed());
-                FrmwrkCLIWrapper.SetSys2FanRPM(FrmwrkCLIWrapper.GetSys2FanSpeed());
+                Reset(false);
             }
 
             public void Update()
@@ -121,11 +130,20 @@ namespace FanControl.Frmwrk
                 _value = val;
             }
 
+            public void Reset(bool ResetAllFansToAuto)
+            {
+                FrmwrkCLIWrapper.ResetFanControl(); // Currently, this resets all fans to auto control, so we need to re-apply the other fan speeds if only one fan is being reset.
+                if (!ResetAllFansToAuto)
+                {
+                    FrmwrkCLIWrapper.SetAPUFanRPM(FrmwrkCLIWrapper.GetAPUFanSpeed());
+                    FrmwrkCLIWrapper.SetSys2FanRPM(FrmwrkCLIWrapper.GetSys2FanSpeed());
+                }
+                _value = null;
+            }
+
             public void Reset()
             {
-                FrmwrkCLIWrapper.ResetFanControl(); // Currently, this resets all fans to auto control, so we need to re-apply the other fan speeds.
-                FrmwrkCLIWrapper.SetAPUFanRPM(FrmwrkCLIWrapper.GetAPUFanSpeed());
-                FrmwrkCLIWrapper.SetSys2FanRPM(FrmwrkCLIWrapper.GetSys2FanSpeed());
+                Reset(false);
             }
 
             public void Update()
@@ -177,11 +195,20 @@ namespace FanControl.Frmwrk
                 _value = val;
             }
 
+            public void Reset(bool ResetAllFansToAuto)
+            {
+                FrmwrkCLIWrapper.ResetFanControl(); // Currently, this resets all fans to auto control, so we need to re-apply the other fan speeds if only one fan is being reset.
+                if (!ResetAllFansToAuto)
+                {
+                    FrmwrkCLIWrapper.SetAPUFanRPM(FrmwrkCLIWrapper.GetAPUFanSpeed());
+                    FrmwrkCLIWrapper.SetSys1FanRPM(FrmwrkCLIWrapper.GetSys1FanSpeed());
+                }
+                _value = null;
+            }
+
             public void Reset()
             {
-                FrmwrkCLIWrapper.ResetFanControl(); // Currently, this resets all fans to auto control, so we need to re-apply the other fan speeds.
-                FrmwrkCLIWrapper.SetAPUFanRPM(FrmwrkCLIWrapper.GetAPUFanSpeed());
-                FrmwrkCLIWrapper.SetSys1FanRPM(FrmwrkCLIWrapper.GetSys1FanSpeed());
+                Reset(false);
             }
 
             public void Update()
