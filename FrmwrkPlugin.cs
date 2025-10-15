@@ -33,7 +33,7 @@ namespace FanControl.Frmwrk
 
         public void Close()
         {
-            // Cleanup code here
+            device.Reset();
         }
 
         public void Update()

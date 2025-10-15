@@ -17,12 +17,17 @@ namespace FanControl.Frmwrk
             Sys2FanSpeedSensor = new Sys2FanSpeed();
             Sys2FanDutyControl = new Sys2FanDuty();
         }
+
+        public void Reset()
+        {
+            FrmwrkCLIWrapper.ResetFanControl();
+        }
         public class APUFanSpeed : IPluginSensor
         {
             public string Name => _name;
             readonly string _name;
             public float? Value => _value;
-            readonly float? _value;
+            float? _value;
             public string Id => _id;
             readonly string _id;
 
@@ -43,20 +48,21 @@ namespace FanControl.Frmwrk
             public string Name => _name;
             readonly string _name;
             public float? Value => _value;
-            readonly float? _value;
+            float? _value;
             public string Id => _id;
             readonly string _id;
 
             public APUFanDuty()
             {
                 _name = "APU Fan Duty";
-                _value = FrmwrkCLIWrapper.GetAPUFanSpeed();
+                _value = null;
                 _id = "frmwrk/duty/apu";
             }
 
             public void Set(float val)
             {
                 FrmwrkCLIWrapper.SetAPUFanDuty((int)val);
+                _value = val;
             }
 
             public void Reset()
@@ -77,7 +83,7 @@ namespace FanControl.Frmwrk
             public string Name => _name;
             readonly string _name;
             public float? Value => _value;
-            readonly float? _value;
+            float? _value;
             public string Id => _id;
             readonly string _id;
 
@@ -98,20 +104,21 @@ namespace FanControl.Frmwrk
             public string Name => _name;
             readonly string _name;
             public float? Value => _value;
-            readonly float? _value;
+            float? _value;
             public string Id => _id;
             readonly string _id;
 
             public Sys1FanDuty()
             {
                 _name = "Sys1 Fan Duty";
-                _value = FrmwrkCLIWrapper.GetSys1FanSpeed();
+                _value = null;
                 _id = "frmwrk/duty/sys1";
             }
 
             public void Set(float val)
             {
                 FrmwrkCLIWrapper.SetSys1FanDuty((int)val);
+                _value = val;
             }
 
             public void Reset()
@@ -132,7 +139,7 @@ namespace FanControl.Frmwrk
             public string Name => _name;
             readonly string _name;
             public float? Value => _value;
-            readonly float? _value;
+            float? _value;
             public string Id => _id;
             readonly string _id;
 
@@ -153,20 +160,21 @@ namespace FanControl.Frmwrk
             public string Name => _name;
             readonly string _name;
             public float? Value => _value;
-            readonly float? _value;
+            float? _value;
             public string Id => _id;
             readonly string _id;
 
             public Sys2FanDuty()
             {
                 _name = "Sys2 Fan Duty";
-                _value = FrmwrkCLIWrapper.GetSys2FanSpeed();
+                _value = null;
                 _id = "frmwrk/duty/sys2";
             }
 
             public void Set(float val)
             {
                 FrmwrkCLIWrapper.SetSys2FanDuty((int)val);
+                _value = val;
             }
 
             public void Reset()
