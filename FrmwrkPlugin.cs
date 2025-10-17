@@ -6,43 +6,69 @@ namespace FanControl.Frmwrk
     {
         public string Name => "FrmwrkPlugin";
         internal IPluginLogger Logger;
-        FrmwrkDevice device;
+        FrmwrkDevice? device;
 
         public FrmwrkPlugin(IPluginLogger logger)
         {
             Logger = logger;
-            device = new FrmwrkDevice(logger);
         }
 
         public void Initialize()
         {
-            // Initialization code here
+            device = new FrmwrkDevice(Logger);
+            FrmwrkCLIWrapper.Logger = Logger;
         }
 
         public void Load(IPluginSensorsContainer container)
         {
-            container.FanSensors.Add(device.APUFanSpeedSensor);
-            container.ControlSensors.Add(device.APUFanDutyControl);
+            if (device == null)
+            {
+                throw new InvalidOperationException("FrmwrkPlugin not initialized before Load() call.");
+            }
+            else
+            {
+                FrmwrkCLIWrapper.Update();
 
-            container.FanSensors.Add(device.Sys1FanSpeedSensor);
-            container.ControlSensors.Add(device.Sys1FanDutyControl);
+                container.FanSensors.Add(device.APUFanSpeedSensor);
+                container.ControlSensors.Add(device.APUFanDutyControl);
 
-            container.FanSensors.Add(device.Sys2FanSpeedSensor);
-            container.ControlSensors.Add(device.Sys2FanDutyControl);
+                container.FanSensors.Add(device.Sys1FanSpeedSensor);
+                container.ControlSensors.Add(device.Sys1FanDutyControl);
+
+                container.FanSensors.Add(device.Sys2FanSpeedSensor);
+                container.ControlSensors.Add(device.Sys2FanDutyControl);
+            }
         }
 
         public void Close()
         {
-            device.Reset();
+            if (device == null)
+            {
+                throw new InvalidOperationException("FrmwrkPlugin not initialized before Close() call.");
+            }
+            else
+            {
+                device.Reset();
+            }
         }
 
         public void Update()
         {
-            FrmwrkCLIWrapper.Update();
-            
-            device.APUFanSpeedSensor.Update();
-            device.Sys1FanSpeedSensor.Update();
-            device.Sys2FanSpeedSensor.Update();
+            if (device == null)
+            {
+                throw new InvalidOperationException("FrmwrkPlugin not initialized before Update() call.");
+            }
+            else
+            {
+                FrmwrkCLIWrapper.Update();
+
+                device.APUFanSpeedSensor.Update();
+                device.APUFanDutyControl.Update();
+                device.Sys1FanSpeedSensor.Update();
+                device.Sys1FanDutyControl.Update();
+                device.Sys2FanSpeedSensor.Update();
+                device.Sys2FanDutyControl.Update();
+            }
         }
-    }
+    }    
 }

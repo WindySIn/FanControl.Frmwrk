@@ -56,7 +56,7 @@ public static class TemperatureParser
                 dict[key] = value;
             }
         }
-
+        
         return dict;
     }
 

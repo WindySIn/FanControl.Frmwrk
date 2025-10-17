@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FanControl.Frmwrk")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e8694a8fba32c9490e859616c7a976ad0907b3ab")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a80700f0d4cc48d60f5ad532cd5d9744b3f232de")]
 [assembly: System.Reflection.AssemblyProductAttribute("FanControl.Frmwrk")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FanControl.Frmwrk")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

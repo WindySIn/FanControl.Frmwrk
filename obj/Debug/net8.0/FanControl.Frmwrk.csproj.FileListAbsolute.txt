@@ -12,3 +12,4 @@ D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\FanControl.Frmwrk.dll
 D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\refint\FanControl.Frmwrk.dll
 D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\FanControl.Frmwrk.pdb
 D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\ref\FanControl.Frmwrk.dll
+D:\Processing\Projects\FanControl.Frmwrk\obj\Debug\net8.0\FanControl.Frmwrk.sourcelink.json

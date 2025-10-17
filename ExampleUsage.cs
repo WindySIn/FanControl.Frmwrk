@@ -14,7 +14,7 @@ Fan Speed:  2357 RPM
 Fan Speed:     0 RPM";
     public static void ParseToJsonDemo()
     {
-        var json = TemperatureParser.ParseToJson(sample);
+        var json = TemperatureParser.ParseToJson(sample, new Dictionary<string, object>());
         Console.WriteLine($"JSON-ified output: {json}");
     }
 }

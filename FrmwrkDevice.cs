@@ -40,7 +40,7 @@ namespace FanControl.Frmwrk
 
             public void Update()
             {
-                FrmwrkCLIWrapper.GetAPUFanSpeed();
+                _value = FrmwrkCLIWrapper.GetAPUFanSpeed();
             }
         }
         public class APUFanDuty : IPluginControlSensor
@@ -83,7 +83,7 @@ namespace FanControl.Frmwrk
 
             public void Update()
             {
-                FrmwrkCLIWrapper.GetAPUFanSpeed();
+                // FrmwrkCLIWrapper.GetAPUFanSpeed();
             }
         }
 
@@ -105,7 +105,7 @@ namespace FanControl.Frmwrk
 
             public void Update()
             {
-                FrmwrkCLIWrapper.GetSys1FanSpeed();
+                _value = FrmwrkCLIWrapper.GetSys1FanSpeed();
             }
         }
         public class Sys1FanDuty : IPluginControlSensor
@@ -148,7 +148,7 @@ namespace FanControl.Frmwrk
 
             public void Update()
             {
-                FrmwrkCLIWrapper.GetSys1FanSpeed();
+                // FrmwrkCLIWrapper.GetSys1FanSpeed();
             }
         }
 
@@ -170,7 +170,7 @@ namespace FanControl.Frmwrk
 
             public void Update()
             {
-                FrmwrkCLIWrapper.GetSys2FanSpeed();
+                _value = FrmwrkCLIWrapper.GetSys2FanSpeed();
             }
         }
         public class Sys2FanDuty : IPluginControlSensor
@@ -213,7 +213,7 @@ namespace FanControl.Frmwrk
 
             public void Update()
             {
-                FrmwrkCLIWrapper.GetSys2FanSpeed();
+                // FrmwrkCLIWrapper.GetSys2FanSpeed();
             }
         }
 
