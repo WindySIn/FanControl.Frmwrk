@@ -4,3 +4,6 @@ Note: due to a quirk with the way that framework_tool.exe reports fan thermal da
 
 **Installation**
 - Copy the folder into FanControl\Plugins\
+
+**Disclaimer**
+Should go without saying, but _use at your own risk_. I've made this for my own use case. At the minimum, I suggest you pay attention to configuration quirks and keep an eye on your system temps when you first use this.
