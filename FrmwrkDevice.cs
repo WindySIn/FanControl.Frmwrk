@@ -11,11 +11,11 @@ namespace FanControl.Frmwrk
             FrmwrkCLIWrapper.Initialize();
 
             APUFanSpeedSensor = new APUFanSpeed();
-            APUFanDutyControl = new APUFanDuty();
+            APUFanDutyControl = new APUFanDuty(this);
             Sys1FanSpeedSensor = new Sys1FanSpeed();
-            Sys1FanDutyControl = new Sys1FanDuty();
+            Sys1FanDutyControl = new Sys1FanDuty(this);
             Sys2FanSpeedSensor = new Sys2FanSpeed();
-            Sys2FanDutyControl = new Sys2FanDuty();
+            Sys2FanDutyControl = new Sys2FanDuty(this);
         }
 
         public void Reset()
@@ -51,39 +51,38 @@ namespace FanControl.Frmwrk
             float? _value;
             public string Id => _id;
             readonly string _id;
+            readonly FrmwrkDevice _device;
 
-            public APUFanDuty()
+            public APUFanDuty(FrmwrkDevice device)
             {
                 _name = "APU Fan Duty";
                 _value = null;
                 _id = "frmwrk/duty/apu";
+                _device = device;
             }
 
             public void Set(float val)
             {
-                FrmwrkCLIWrapper.SetAPUFanDuty((int)val);
-                _value = val;
-            }
-
-            public void Reset(bool ResetAllFansToAuto)
-            {
-                FrmwrkCLIWrapper.ResetFanControl(); // Currently, this resets all fans to auto control, so we need to re-apply the other fan speeds if only one fan is being reset.
-                if (!ResetAllFansToAuto)
-                {
-                    FrmwrkCLIWrapper.SetSys1FanRPM(FrmwrkCLIWrapper.GetSys1FanSpeed());
-                    FrmwrkCLIWrapper.SetSys2FanRPM(FrmwrkCLIWrapper.GetSys2FanSpeed());
+                if (val != _value)
+                {    
+                    FrmwrkCLIWrapper.SetAPUFanDuty((int)val);
+                    _value = val;
                 }
-                _value = null;
             }
 
             public void Reset()
             {
-                Reset(false);
+                FrmwrkDevice.ResetFanControls(_device);
             }
 
             public void Update()
             {
-                // FrmwrkCLIWrapper.GetAPUFanSpeed();
+                // _value = FrmwrkCLIWrapper.GetAPUFanSpeed();
+            }
+
+            internal void Nullify()
+            {
+                _value = null;
             }
         }
 
@@ -116,39 +115,38 @@ namespace FanControl.Frmwrk
             float? _value;
             public string Id => _id;
             readonly string _id;
+            FrmwrkDevice _device;
 
-            public Sys1FanDuty()
+            public Sys1FanDuty(FrmwrkDevice device)
             {
                 _name = "Sys1 Fan Duty";
                 _value = null;
                 _id = "frmwrk/duty/sys1";
+                _device = device;
             }
 
             public void Set(float val)
             {
-                FrmwrkCLIWrapper.SetSys1FanDuty((int)val);
-                _value = val;
-            }
-
-            public void Reset(bool ResetAllFansToAuto)
-            {
-                FrmwrkCLIWrapper.ResetFanControl(); // Currently, this resets all fans to auto control, so we need to re-apply the other fan speeds if only one fan is being reset.
-                if (!ResetAllFansToAuto)
+                if (val != _value)
                 {
-                    FrmwrkCLIWrapper.SetAPUFanRPM(FrmwrkCLIWrapper.GetAPUFanSpeed());
-                    FrmwrkCLIWrapper.SetSys2FanRPM(FrmwrkCLIWrapper.GetSys2FanSpeed());
+                    FrmwrkCLIWrapper.SetSys1FanDuty((int)val);
+                    _value = val;
                 }
-                _value = null;
             }
 
             public void Reset()
             {
-                Reset(false);
+                FrmwrkDevice.ResetFanControls(_device);
             }
 
             public void Update()
             {
-                // FrmwrkCLIWrapper.GetSys1FanSpeed();
+                // _value = FrmwrkCLIWrapper.GetSys1FanSpeed();
+            }
+
+            internal void Nullify()
+            {
+                _value = null;
             }
         }
 
@@ -181,42 +179,50 @@ namespace FanControl.Frmwrk
             float? _value;
             public string Id => _id;
             readonly string _id;
+            FrmwrkDevice _device;
 
-            public Sys2FanDuty()
+            public Sys2FanDuty(FrmwrkDevice device)
             {
                 _name = "Sys2 Fan Duty";
                 _value = null;
                 _id = "frmwrk/duty/sys2";
+                _device = device;
             }
 
             public void Set(float val)
             {
-                FrmwrkCLIWrapper.SetSys2FanDuty((int)val);
-                _value = val;
-            }
-
-            public void Reset(bool ResetAllFansToAuto)
-            {
-                FrmwrkCLIWrapper.ResetFanControl(); // Currently, this resets all fans to auto control, so we need to re-apply the other fan speeds if only one fan is being reset.
-                if (!ResetAllFansToAuto)
+                if (val != _value)
                 {
-                    FrmwrkCLIWrapper.SetAPUFanRPM(FrmwrkCLIWrapper.GetAPUFanSpeed());
-                    FrmwrkCLIWrapper.SetSys1FanRPM(FrmwrkCLIWrapper.GetSys1FanSpeed());
+                    FrmwrkCLIWrapper.SetSys2FanDuty((int)val);
+                    _value = val;
                 }
-                _value = null;
             }
 
             public void Reset()
             {
-                Reset(false);
+                FrmwrkDevice.ResetFanControls(_device);
             }
 
             public void Update()
             {
-                // FrmwrkCLIWrapper.GetSys2FanSpeed();
+                // _value = FrmwrkCLIWrapper.GetSys2FanSpeed();
+            }
+
+            internal void Nullify()
+            {
+                _value = null;
             }
         }
 
+        private static void ResetFanControls(FrmwrkDevice device)
+        {
+            // TODO: Revisit using enum to specify which fan to reset and then calling updates on the other fans to re-apply their speeds
+            device.APUFanDutyControl.Nullify();
+            device.Sys1FanDutyControl.Nullify();
+            device.Sys2FanDutyControl.Nullify();
+            FrmwrkCLIWrapper.ResetFanControl(); // Currently, this resets all fans to auto control, so we need to re-apply the other fan speeds if only one fan is being reset.
+        }
+        
         public APUFanSpeed APUFanSpeedSensor;
         public APUFanDuty APUFanDutyControl;
         public Sys1FanSpeed Sys1FanSpeedSensor;

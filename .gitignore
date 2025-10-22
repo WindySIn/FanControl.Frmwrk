@@ -1,0 +1,7 @@
+README.md
+.DS_Store
+ExampleUsage.cs
+TestCLIWrapper.cs
+bin/
+obj/
+.vscode/
